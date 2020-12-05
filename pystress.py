@@ -61,9 +61,10 @@ def _main():
         msg = "Usage: pystress [exec_time] [proc_num]\n"
         sys.stderr.write(msg)
         sys.exit(1)
+
     procs = []
     conns = []
-    for i in range(proc_num):
+    for _ in range(proc_num):
         parent_conn, child_conn = Pipe()
         p = Process(target=loop, args=(child_conn,))
         p.start()
@@ -72,7 +73,7 @@ def _main():
 
     for conn in conns:
         try:
-            print conn.recv()
+            print(conn.recv())
         except EOFError:
             continue
 
