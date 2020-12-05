@@ -57,11 +57,15 @@ def get_args():
 def _main():
     try:
         exec_time, proc_num = get_args()
-    except:
+    except Exception:
         msg = "Usage: pystress [exec_time] [proc_num]\n"
         sys.stderr.write(msg)
         sys.exit(1)
 
+    pystress(exec_time, proc_num)
+
+
+def pystress(exec_time, proc_num):
     procs = []
     conns = []
     for _ in range(proc_num):
